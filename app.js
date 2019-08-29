@@ -1,7 +1,7 @@
 var time, scores, activePlayer, gameRunning;
 var timeEl, namesEl, scoresEl, guessWordEl, tabooWordsEl;
 var apiUrl, pageNumber
-var words, usedWords, hardcoded_words, currentGuessWord, currentTabooWords, wordCount, totalWords;
+var words, usedWords, skippedWords, hardcoded_words, currentGuessWord, currentTabooWords, wordCount, totalWords;
 
 const API_PAGINATION_SIZE = 10;
 
@@ -41,6 +41,7 @@ while (pageNumber < 11) {
 }
 
 usedWords = [];
+skippedWords = [];
 
 timeEl = document.getElementById("time");
 
@@ -235,6 +236,12 @@ document.getElementById('btn-skip').addEventListener('click', function() {
 
     if (gameRunning) {
 
+        // Remove the current word from the usedWords list
+        arrayRemove(usedWords, currentGuessWord)
+
+        // Add it to the skipped list
+        skippedWords.push(currentGuessWord)
+        
         // Change the word
         getNewWord();
     }
@@ -428,3 +435,11 @@ function useHardCodedWords() {
         {"guessWord": "Red Sea", "tabooWords": ["Part", "Staff", "Moses", "Army"]},
         ];
 }
+
+function arrayRemove(arr, value) {
+
+    return arr.filter(function(ele){
+        return ele != value;
+    });
+ 
+ }
