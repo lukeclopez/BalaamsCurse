@@ -65,13 +65,3 @@ export function selectWord(usedWords) {
 
   return selectedWord;
 }
-
-export function switchPlayer() {
-  if (activePlayer === 0) {
-    activePlayer = 1;
-  } else {
-    activePlayer = 0;
-  }
-
-  localStorage.setItem("activePlayer", activePlayer);
-}

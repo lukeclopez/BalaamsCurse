@@ -15,3 +15,7 @@ code {
 hr.style1 {
   border-top: 2px solid #8c8b8b;
 }
+
+.active-player {
+  font-weight: bold;
+}

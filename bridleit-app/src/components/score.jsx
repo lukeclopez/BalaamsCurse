@@ -1,7 +1,7 @@
 import React from "react";
 
-const Score = ({ value }) => {
-  return <h1>{value}</h1>;
+const Score = ({ value, isActive }) => {
+  return <span className={isActive && "active-player"}>{value}</span>;
 };
 
 export default Score;

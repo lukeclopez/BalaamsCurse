@@ -28,19 +28,39 @@ class App extends Component {
     });
   }
 
+  switchPlayer = () => {
+    const { activePlayer } = this.state;
+    let newActivePlayer = activePlayer;
+
+    if (activePlayer === 0) {
+      newActivePlayer = 1;
+    } else {
+      newActivePlayer = 0;
+    }
+
+    this.setState({ activePlayer: newActivePlayer });
+  };
+
   handleTimeOut = () => {
     console.log("Out of time!");
     this.setState({ gameRunning: false });
+    this.switchPlayer();
   };
 
   render() {
-    const { currentWord, startingTime, scores, gameRunning } = this.state;
+    const {
+      currentWord,
+      startingTime,
+      scores,
+      gameRunning,
+      activePlayer
+    } = this.state;
     console.log(startingTime);
     return (
       <div className="container">
         <div className="row">
           <div className="col">
-            <Score value={scores[0]} />
+            <Score value={scores[0]} isActive={activePlayer === 0} />
           </div>
           <div className="col">
             <Timer
@@ -50,7 +70,7 @@ class App extends Component {
             />
           </div>
           <div className="col">
-            <Score value={scores[1]} />
+            <Score value={scores[1]} isActive={activePlayer === 1} />
           </div>
         </div>
         <div className="row justify-content-center">
