@@ -9,13 +9,23 @@ class ButtonGroup extends Component {
     return (
       <div>
         <div className="row">
-          <button className={this.btnClasses + "btn-lg"}>V</button>
-          <button className={this.btnClasses + "btn-lg"}>X</button>
+          <button className={this.btnClasses + "btn-lg"}>
+            <i className="fa fa-check" aria-hidden="true" />
+          </button>
+          <button className={this.btnClasses + "btn-lg"}>
+            <i className="fa fa-window-close" aria-hidden="true" />
+          </button>
         </div>
         <div className="row">
-          <button className={this.btnClasses + "btn-sm"}>></button>
-          <button className={this.btnClasses + "btn-sm"}>Q</button>
-          <button className={this.btnClasses + "btn-sm"}>O</button>
+          <button className={this.btnClasses + "btn-sm"}>
+            <i className="fa fa-play" aria-hidden="true" />
+          </button>
+          <button className={this.btnClasses + "btn-sm"}>
+            <i className="fa fa-recycle" aria-hidden="true" />
+          </button>
+          <button className={this.btnClasses + "btn-sm"}>
+            <i className="fa fa-gear" aria-hidden="true" />
+          </button>
         </div>
       </div>
     );
