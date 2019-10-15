@@ -1,6 +1,6 @@
 import { words } from "./wordsService";
 
-export let time, scores, activePlayer, gameRunning;
+export let startingTime, scores, activePlayer, gameRunning;
 export let usedWords,
   skippedWords,
   hardcoded_words,
@@ -12,9 +12,9 @@ export let usedWords,
 export function initGame() {
   // Check localStorage for game values, otherwise use defaults
   if (localStorage.startingTime) {
-    time = parseInt(localStorage.startingTime);
+    startingTime = parseInt(localStorage.startingTime);
   } else {
-    time = 60;
+    startingTime = 60;
   }
 
   if (localStorage.activePlayer) {
@@ -38,7 +38,7 @@ export function initGame() {
 
   wordCount = 0;
 
-  return { time, activePlayer, scores, usedWords, wordCount };
+  return { startingTime, activePlayer, scores, usedWords, wordCount };
 }
 
 export function selectWord(usedWords) {
@@ -64,4 +64,14 @@ export function selectWord(usedWords) {
   }
 
   return selectedWord;
+}
+
+export function switchPlayer() {
+  if (activePlayer === 0) {
+    activePlayer = 1;
+  } else {
+    activePlayer = 0;
+  }
+
+  localStorage.setItem("activePlayer", activePlayer);
 }

@@ -9,23 +9,33 @@ import "./App.css";
 class App extends Component {
   state = {
     allWords: [],
-    time: 0,
+    startingTime: 60,
     activePlayer: 0,
     scores: [],
     usedWords: [],
     wordCount: 0,
-    currentWord: { guessWord: "", tabooWords: [] }
+    currentWord: { guessWord: "", tabooWords: [] },
+    gameRunning: true
   };
 
   componentDidMount() {
+    const initialValues = gL.initGame();
+    const currentWord = gL.selectWord(this.state.usedWords);
+
     this.setState({
-      currentWord: gL.selectWord(this.state.usedWords),
-      ...gL.initGame()
+      ...initialValues,
+      currentWord
     });
   }
 
+  handleTimeOut = () => {
+    console.log("Out of time!");
+    this.setState({ gameRunning: false });
+  };
+
   render() {
-    const { currentWord, time, scores } = this.state;
+    const { currentWord, startingTime, scores, gameRunning } = this.state;
+    console.log(startingTime);
     return (
       <div className="container">
         <div className="row">
@@ -33,7 +43,11 @@ class App extends Component {
             <Score value={scores[0]} />
           </div>
           <div className="col">
-            <Timer value={time} />
+            <Timer
+              startingTime={startingTime}
+              onTimeOut={this.handleTimeOut}
+              timerActive={gameRunning}
+            />
           </div>
           <div className="col">
             <Score value={scores[1]} />
