@@ -1,0 +1,34 @@
+[
+  {
+    "id": {
+      "scope": "react-bootstrap.react-bootstrap",
+      "name": "button"
+    },
+    "isSymlink": false,
+    "hash": "8c29f09f1204609382fe0962b815d2c96545d230"
+  },
+  {
+    "id": {
+      "scope": "react-bootstrap.react-bootstrap",
+      "name": "safe-anchor"
+    },
+    "isSymlink": false,
+    "hash": "9ee36093086101eb24f140463a9a65f172feecb7"
+  },
+  {
+    "id": {
+      "scope": "react-bootstrap.react-bootstrap",
+      "name": "create-chained-function"
+    },
+    "isSymlink": false,
+    "hash": "254617884d11317e123951b3182fd6ad149ff09f"
+  },
+  {
+    "id": {
+      "scope": "react-bootstrap.react-bootstrap",
+      "name": "theme-provider"
+    },
+    "isSymlink": false,
+    "hash": "8744b5c5c31aadaf29597418becb86c3f2ea351c"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "@bit/react-bootstrap.react-bootstrap.button",
+  "version": "1.0.0",
+  "homepage": "https://bit.dev/react-bootstrap/react-bootstrap/button",
+  "main": "dist/src/Button.js",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types-extra": "^1.1.0",
+    "prop-types": "^15.6.2",
+    "@bit/react-bootstrap.react-bootstrap.safe-anchor": "1.0.0",
+    "@bit/react-bootstrap.react-bootstrap.theme-provider": "1.0.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.8.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/react@1.0.0"
+    }
+  }
+}
