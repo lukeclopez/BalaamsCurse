@@ -13,9 +13,10 @@ class App extends Component {
     activePlayer: 0,
     scores: [],
     usedWords: [],
+    skippedWords: [],
     wordCount: 0,
     currentWord: { guessWord: "", tabooWords: [] },
-    gameRunning: true
+    gameRunning: false
   };
 
   componentDidMount() {
@@ -41,10 +42,88 @@ class App extends Component {
     this.setState({ activePlayer: newActivePlayer });
   };
 
+  pauseGame = () => {
+    const { gameRunning, currentWord, wordCount, usedWords } = this.state;
+    let newCurrentWord = currentWord;
+    let newWordCount = wordCount;
+
+    if (gameRunning) {
+      this.setState({ gameRunning: false });
+    } else {
+      if (wordCount === 0) {
+        newCurrentWord = gL.selectWord(usedWords);
+        newWordCount++;
+      }
+
+      this.setState({
+        currentWord: newCurrentWord,
+        gameRunning: true,
+        wordCount: newWordCount
+      });
+    }
+  };
+
   handleTimeOut = () => {
-    console.log("Out of time!");
-    this.setState({ gameRunning: false });
+    const newCurrentWord = gL.selectWord(this.state.usedWords);
+    this.setState({
+      gameRunning: false,
+      currentWord: newCurrentWord
+    });
     this.switchPlayer();
+  };
+
+  handleGotIt = () => {
+    const {
+      gameRunning,
+      activePlayer,
+      scores,
+      usedWords,
+      wordCount
+    } = this.state;
+    const newScores = [...scores];
+
+    if (gameRunning) {
+      // Update score
+      newScores[activePlayer]++;
+      const newCurrentWord = gL.selectWord(usedWords);
+
+      this.setState({
+        scores: newScores,
+        currentWord: newCurrentWord,
+        wordCount: wordCount + 1
+      });
+    }
+  };
+
+  handleSkip = () => {
+    const { gameRunning, usedWords, skippedWords, currentWord } = this.state;
+
+    if (gameRunning) {
+      const newUsedWords = usedWords.filter(e => e !== currentWord);
+
+      const newSkippedWords = [...skippedWords];
+      newSkippedWords.push(currentWord);
+
+      const newCurrentWord = gL.selectWord(usedWords);
+
+      this.setState({
+        skippedWords: newSkippedWords,
+        currentWord: newCurrentWord,
+        usedWords: newUsedWords
+      });
+    }
+  };
+
+  handlePlay = () => {
+    this.pauseGame();
+  };
+
+  handleRestart = () => {
+    console.log("Restart button pressed.");
+  };
+
+  handleOptions = () => {
+    console.log("Options button pressed.");
   };
 
   render() {
@@ -55,7 +134,17 @@ class App extends Component {
       gameRunning,
       activePlayer
     } = this.state;
-    console.log(startingTime);
+
+    const buttonGroupHandlers = {
+      onGotIt: this.handleGotIt,
+      onSkip: this.handleSkip,
+      onPlay: this.handlePlay,
+      onRestart: this.handleRestart,
+      onOptions: this.handleOptions
+    };
+
+    console.log("Game Running? " + gameRunning);
+
     return (
       <div className="container">
         <div className="row">
@@ -77,7 +166,10 @@ class App extends Component {
           <WordsPanel currentWord={currentWord} />
         </div>
         <div className="row justify-content-center block">
-          <ButtonGroup />
+          <ButtonGroup
+            gameRunning={gameRunning}
+            handlers={buttonGroupHandlers}
+          />
         </div>
       </div>
     );

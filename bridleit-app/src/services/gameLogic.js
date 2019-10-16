@@ -53,14 +53,14 @@ export function selectWord(usedWords) {
     // Try again to get an unused word
     console.log("Repeated a word: " + selectedWord.guessWord);
     console.log(usedWords.length);
-    selectWord();
+    selectWord(usedWords);
   } else {
     // Add the word to the used words list
     usedWords.push(selectedWord.guessWord);
 
     // Add the used words list to local storage, separated by commas
     // TODO: Change from objects to plain text
-    localStorage.setItem("usedWords", usedWords.join());
+    // localStorage.setItem("usedWords", usedWords.join());
   }
 
   return selectedWord;

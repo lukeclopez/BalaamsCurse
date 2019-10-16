@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 
 class Timer extends Component {
-  state = { remainingTime: 0, timerActive: this.props.timerActive };
+  state = {
+    remainingTime: this.props.startingTime
+  };
 
   componentDidMount() {
     setInterval(this.update, 1000);
   }
 
   update = () => {
-    const { remainingTime, timerActive } = this.state;
-    const { startingTime, onTimeOut } = this.props;
+    const { remainingTime } = this.state;
+    const { startingTime, onTimeOut, timerActive } = this.props;
 
     if (timerActive) {
       if (remainingTime < 1) {
