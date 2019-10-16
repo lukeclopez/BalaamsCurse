@@ -38,7 +38,16 @@ export function initGame() {
 
   wordCount = 0;
 
-  return { startingTime, activePlayer, scores, usedWords, wordCount };
+  const remainingTime = startingTime;
+
+  return {
+    startingTime,
+    remainingTime,
+    activePlayer,
+    scores,
+    usedWords,
+    wordCount
+  };
 }
 
 export function selectWord(usedWords) {

@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     allWords: [],
     startingTime: 60,
+    remainingTime: 60,
     activePlayer: 0,
     scores: [],
     usedWords: [],
@@ -28,10 +29,26 @@ class App extends Component {
     const initialValues = gL.initGame();
     const currentWord = gL.selectWord(this.state.usedWords);
 
+    setInterval(this.tickTimer, 1000);
+
     this.setState({
       ...initialValues,
       currentWord
     });
+  };
+
+  tickTimer = () => {
+    const { startingTime, remainingTime, gameRunning } = this.state;
+
+    if (gameRunning) {
+      if (remainingTime < 1) {
+        this.setState({ remainingTime: startingTime });
+        this.handleTimeOut();
+      } else {
+        const newTime = remainingTime - 1;
+        this.setState({ remainingTime: newTime });
+      }
+    }
   };
 
   switchPlayer = () => {
@@ -154,6 +171,7 @@ class App extends Component {
     const {
       currentWord,
       startingTime,
+      remainingTime,
       scores,
       gameRunning,
       activePlayer
@@ -174,11 +192,7 @@ class App extends Component {
             <Score value={scores[0]} isActive={activePlayer === 0} />
           </div>
           <div className="col">
-            <Timer
-              startingTime={startingTime}
-              onTimeOut={this.handleTimeOut}
-              timerActive={gameRunning}
-            />
+            <Timer remainingTime={remainingTime} />
           </div>
           <div className="col">
             <Score value={scores[1]} isActive={activePlayer === 1} />
