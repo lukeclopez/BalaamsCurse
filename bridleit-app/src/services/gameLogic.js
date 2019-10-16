@@ -36,17 +36,14 @@ export function initGame() {
     usedWords.length = 0;
   }
 
-  wordCount = 0;
-
-  const remainingTime = startingTime;
-
   return {
     startingTime,
-    remainingTime,
+    remainingTime: startingTime,
     activePlayer,
     scores,
     usedWords,
-    wordCount
+    wordCount: 0,
+    gameRunning: false
   };
 }
 

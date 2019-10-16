@@ -170,7 +170,6 @@ class App extends Component {
   render() {
     const {
       currentWord,
-      startingTime,
       remainingTime,
       scores,
       gameRunning,
