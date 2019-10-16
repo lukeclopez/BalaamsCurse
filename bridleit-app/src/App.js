@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { confirmAlert } from "react-confirm-alert";
 import * as gL from "./services/gameLogic";
 import Score from "./components/score";
 import Timer from "./components/timer";
@@ -20,6 +21,10 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.initGame();
+  }
+
+  initGame = () => {
     const initialValues = gL.initGame();
     const currentWord = gL.selectWord(this.state.usedWords);
 
@@ -27,7 +32,7 @@ class App extends Component {
       ...initialValues,
       currentWord
     });
-  }
+  };
 
   switchPlayer = () => {
     const { activePlayer } = this.state;
@@ -119,11 +124,30 @@ class App extends Component {
   };
 
   handleRestart = () => {
-    console.log("Restart button pressed.");
+    const options = {
+      title: "Title",
+      message: "Are you sure you want to start a new game?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: this.initGame
+        },
+        {
+          label: "No",
+          onClick: () => {}
+        }
+      ],
+      closeOnEscape: true,
+      closeOnClickOutside: true
+    };
+
+    confirmAlert(options);
   };
 
   handleOptions = () => {
-    console.log("Options button pressed.");
+    this.setState({
+      gameRunning: false
+    });
   };
 
   render() {
@@ -142,8 +166,6 @@ class App extends Component {
       onRestart: this.handleRestart,
       onOptions: this.handleOptions
     };
-
-    console.log("Game Running? " + gameRunning);
 
     return (
       <div className="container">
