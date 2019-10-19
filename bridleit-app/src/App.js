@@ -29,6 +29,7 @@ class App extends Component {
     const initialValues = gL.initGame();
     const currentWord = gL.selectWord(this.state.usedWords);
 
+    clearInterval(2);
     setInterval(this.tickTimer, 1000);
 
     this.setState({
@@ -184,29 +185,36 @@ class App extends Component {
       onOptions: this.handleOptions
     };
 
+    const blankWord = {
+      guessWord: "Get your team to guess this word...",
+      tabooWords: ["Without saying this", "or this", "or this", "or this"]
+    };
+
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <Score value={scores[0]} isActive={activePlayer === 0} />
-          </div>
-          <div className="col">
-            <Timer remainingTime={remainingTime} />
-          </div>
-          <div className="col">
-            <Score value={scores[1]} isActive={activePlayer === 1} />
+      <>
+        <div className="container">
+          <div className="row">
+            <div className="col text-center">
+              <Score value={scores[0]} isActive={activePlayer === 0} />
+            </div>
+            <div className="col text-center">
+              <Timer remainingTime={remainingTime} />
+            </div>
+            <div className="col text-center">
+              <Score value={scores[1]} isActive={activePlayer === 1} />
+            </div>
           </div>
         </div>
         <div className="row justify-content-center">
-          <WordsPanel currentWord={currentWord} />
+          <WordsPanel currentWord={gameRunning ? currentWord : blankWord} />
         </div>
-        <div className="row justify-content-center block">
+        <div className="row justify-content-center">
           <ButtonGroup
             gameRunning={gameRunning}
             handlers={buttonGroupHandlers}
           />
         </div>
-      </div>
+      </>
     );
   }
 }
