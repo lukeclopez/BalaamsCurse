@@ -1,11 +1,7 @@
 import React from "react";
 
 const GuessWord = ({ word }) => {
-  return (
-    <span className="card-title white-text">
-      <b>{word}</b>
-    </span>
-  );
+  return <span className="guess-word">{word}</span>;
 };
 
 export default GuessWord;

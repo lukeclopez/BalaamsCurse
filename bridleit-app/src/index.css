@@ -19,3 +19,11 @@ hr.style1 {
 .active-player {
   font-weight: bold;
 }
+
+li.taboo-word {
+  list-style-type: none;
+}
+
+.guess-word {
+  font-weight: bold;
+}

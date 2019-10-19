@@ -2,15 +2,13 @@ import React from "react";
 
 const TabooWords = ({ words }) => {
   return (
-    <div>
-      <ul>
-        {words.map(w => (
-          <li key={w} className="list-group-item">
-            {w}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul style={{ padding: 0 }}>
+      {words.map((w, index) => (
+        <li key={(w, index)} className="taboo-word">
+          {w}
+        </li>
+      ))}
+    </ul>
   );
 };
 
