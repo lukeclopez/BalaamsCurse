@@ -37,12 +37,18 @@ class ButtonGroup extends Component {
         </div>
         <div className="row">
           <div className="col text-center">
-            <button className={this.btnClasses + "btn-sm"} onClick={onRestart}>
+            <button
+              className={this.btnClasses + "btn-sm btn-block"}
+              onClick={onRestart}
+            >
               <i className="fa fa-retweet" aria-hidden="true" style={style} />
             </button>
           </div>
           <div className="col text-center">
-            <button className={this.btnClasses + "btn-sm"} onClick={onPlay}>
+            <button
+              className={this.btnClasses + "btn-sm btn-block"}
+              onClick={onPlay}
+            >
               <i
                 className={playButtonClasses}
                 aria-hidden="true"
@@ -51,7 +57,10 @@ class ButtonGroup extends Component {
             </button>
           </div>
           <div className="col text-center">
-            <button className={this.btnClasses + "btn-sm"} onClick={onOptions}>
+            <button
+              className={this.btnClasses + "btn-sm btn-block"}
+              onClick={onOptions}
+            >
               <i className="fa fa-gear" aria-hidden="true" style={style} />
             </button>
           </div>

@@ -59,7 +59,7 @@ export function selectWord(usedWords) {
     // Try again to get an unused word
     console.log("Repeated a word: " + selectedWord.guessWord);
     console.log(usedWords.length);
-    selectWord(usedWords);
+    selectedWord = selectWord(usedWords);
   } else {
     // Add the word to the used words list
     usedWords.push(selectedWord.guessWord);

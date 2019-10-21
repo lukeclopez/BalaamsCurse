@@ -1,9 +1,14 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 const Timer = ({ remainingTime }) => {
   return (
     <>
-      <h1>{remainingTime}</h1>
+      <span className="timer">
+        <FontAwesomeIcon icon={faClock} />
+        {remainingTime}
+      </span>
     </>
   );
 };

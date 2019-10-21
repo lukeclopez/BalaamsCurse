@@ -5,7 +5,7 @@ import TabooWords from "./tabooWords";
 const WordsPanel = ({ currentWord }) => {
   const { guessWord, tabooWords } = currentWord;
   return (
-    <div className="card text-center w-100">
+    <div className="card text-center w-75">
       <div className="card-body">
         <h5 className="card-title">
           <GuessWord word={guessWord} />

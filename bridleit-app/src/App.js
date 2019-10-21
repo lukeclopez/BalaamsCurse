@@ -168,6 +168,12 @@ class App extends Component {
     });
   };
 
+  onScoreSave = (value, player) => {
+    const newScores = [...this.state.scores];
+    newScores[player] = value;
+    this.setState({ scores: newScores });
+  };
+
   render() {
     const {
       currentWord,
@@ -195,13 +201,25 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col text-center">
-              <Score value={scores[0]} isActive={activePlayer === 0} />
+              <Score
+                teamName="Team 1"
+                value={scores[0]}
+                isActive={activePlayer === 0}
+                player={0}
+                onSave={this.onScoreSave}
+              />
             </div>
             <div className="col text-center">
               <Timer remainingTime={remainingTime} />
             </div>
             <div className="col text-center">
-              <Score value={scores[1]} isActive={activePlayer === 1} />
+              <Score
+                teamName="Team 2"
+                value={scores[1]}
+                isActive={activePlayer === 1}
+                player={1}
+                onSave={this.onScoreSave}
+              />
             </div>
           </div>
         </div>
